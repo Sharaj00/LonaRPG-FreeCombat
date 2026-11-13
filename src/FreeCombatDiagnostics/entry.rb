@@ -193,6 +193,7 @@ module FreeCombatDiagnostics
       'combat_version'=>$mod_manager['FreeCombatPrototype'].version,
       'performance'=>defined?(LonaPerformance) ? LonaPerformance.status : nil,
       'compatibility'=>defined?(FreeCombatCompatibility) ? FreeCombatCompatibility.status : nil,
+      'load_order'=>$mod_manager.load_order.select { |mod| mod.enabled && mod.loaded }.map { |mod| mod.id },
       'limits'=>{'window_seconds'=>5,'slow_threshold_ms'=>50,'slow_samples'=>12,'files'=>3,'file_bytes'=>LIMIT},
       'timings'=>'Inclusive wall time; graphics includes render/wait. Intervals include focus/OS pauses. No GC profiler or call tracing.'})
   rescue StandardError => error

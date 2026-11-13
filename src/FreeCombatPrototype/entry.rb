@@ -1,4 +1,8 @@
 base = File.dirname(__FILE__)
+load_script "#{base}/load_order.rb"
+if defined?(ModManager) && $mod_manager
+  FreeCombatPrototype::LoadOrder.apply($mod_manager, DataManager.userDataPath + 'GameMods.ini')
+end
 load_script "#{base}/core.rb"
 load_script "#{base}/scene.rb"
 load_script "#{base}/map_world.rb"
