@@ -33,7 +33,7 @@
 1. [_RolePlayS 0.7.9.3](https://raidgame.ru/mods/565/)
 2. [_GrayRat_CustomNPCchs, _LoliMama_CustomNPCchs, _Milo_CustomNPCchs, _Musketeer_CustomNPCchs, DedGirl_chs, OrkindSlayerGirl_chs](https://raidgame.ru/mods/622/)
 3. [LonaRpgCoockingExpanded 0.5.0](https://raidgame.ru/mods/848/)
-4. Temper Trine 1.5.2 (папка `Temper Trine`, ID `temper_trine`).
+4. [Temper Trine 1.5.2](https://raidgame.ru/mods/836/)
 5. [FactionClashes 0.3.22](https://raidgame.ru/mods/862/)
 6. [RestJournal 3.5](https://raidgame.ru/mods/863/)
 7. [PassiveStaminaRegen](https://raidgame.ru/mods/837/)
