@@ -1,0 +1,10 @@
+{
+  "id": "FreeCombatCompatibility",
+  "version": "0.1.1",
+  "name": "Free Combat - Mod Compatibility",
+  "description": "Compatibility bridges for the verified RolePlay-S, Temper Trine, Faction Clashes, Rest Journal and PassiveStaminaRegen set. Start a new game with RolePlay-S. Load supplied mods before Free Combat, then this addon.",
+  "entry": "entry.rb",
+  "requires": {
+    "FreeCombatPrototype": ["==", "0.8.11"]
+  }
+}

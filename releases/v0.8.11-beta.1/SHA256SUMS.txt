@@ -1,0 +1,4 @@
+5fc4d7cac65cee9c34daf7d3d532f33df64520368107c52af2de6eb2b96c87cc  FreeCombatPrototype-0.8.11.zip
+9b134354e8a69b4e75488db711247aff1516162e832ac6d5ebcced23f5a0bba5  FreeCombatDiagnostics-0.2.2.zip
+7ee60f1addbab447979ae02164ed94a32b8a1f27d79286545e70412d108941b9  FreeCombatCompatibility-0.1.1.zip
+3f75d39d200beb881036b9be98b80ae39c470ee86de48e071627265a6a8f0cbb  LonaPerformance-0.1.13.zip

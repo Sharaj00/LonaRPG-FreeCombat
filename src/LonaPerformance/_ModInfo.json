@@ -1,0 +1,8 @@
+{
+  "id": "LonaPerformance",
+  "version": "0.1.13",
+  "name": "Lona Performance - Early Access",
+  "description": "Early Access 0.1.13. Standalone performance addon; compatible FreeCombat versions receive optional geometry and event optimizations. Experimental GC batching works on native maps and is off by default. Manual stability and performance validation pending. Restart after changes.",
+  "entry": "entry.rb",
+  "requires": {}
+}
