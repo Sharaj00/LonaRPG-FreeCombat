@@ -8,6 +8,16 @@ if defined?(Scene_Map)
   load_script "#{base}/map_mode.rb"
   load_script "#{base}/map_npcs.rb"
   load_script "#{base}/story_mode.rb"
+  load_script "#{base}/compatibility.rb"
+  FreeCombatCompatibility.disable_legacy
+
+  class << SceneManager
+    alias_method :fcp_compatibility_original_run, :run
+    def run
+      FreeCombatCompatibility.install
+      fcp_compatibility_original_run
+    end
+  end
 end
 
 # Release a previous story controller when returning to the title.
