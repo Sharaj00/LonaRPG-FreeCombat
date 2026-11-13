@@ -7,6 +7,8 @@ Start a **new game** with RolePlay-S. Its character-class selection and actor
 stats are part of the save format; this addon does not migrate pre-RolePlay-S
 saves. Choose the class through RolePlay-S's ordinary creation screen.
 
+Extract the archive and manually place its `FreeCombatCompatibility/` folder in the game copy's `ModScripts/_Mods/` folder. The archive does not contain the parent folders.
+
 ## Load order
 
 1. RolePlayS 0.7.9.3.

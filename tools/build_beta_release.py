@@ -39,7 +39,7 @@ def main():
             members['SHA256.json'] = json.dumps({name: hashlib.sha256(data).hexdigest()
                 for name, data in members.items()}, indent=2).encode('utf-8')
             assert 'GC_BATCH_FRAMES = 0' in members['settings.rb'].decode('utf-8')
-        prefix = 'ModScripts/_Mods/' + addon + '/'
+        prefix = addon + '/'
         archive = out / (addon + '-' + info['version'] + '.zip')
         with zipfile.ZipFile(archive, 'w', zipfile.ZIP_DEFLATED) as bundle:
             for name, data in members.items():

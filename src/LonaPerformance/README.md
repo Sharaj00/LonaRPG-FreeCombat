@@ -27,7 +27,7 @@ GC batching delays finalizers and can affect other mods/resources. It is off by 
 
 1. Back up the test copy and close the game. Keep the original installation unchanged.
 2. Remove the old standalone `ModScripts/60000_RGSSPerformancePatch.rb`, `60010_RGSSCombatPerformance.rb` and `60020_RGSSCombatGCExperiment.rb` from the test copy. Retain backups outside any auto-loaded mod folder. The old `ModScripts/RGSSCombatPerformance/` DLL folder can also be removed after backup.
-3. Copy the package's `ModScripts/_Mods/LonaPerformance/` folder into the same path in the test copy. Do not copy separate patches alongside it.
+3. Extract the archive and manually copy its `LonaPerformance/` folder into `ModScripts/_Mods/` in the test copy. Do not copy separate patches alongside it.
 4. Enable **Lona Performance - Early Access** in the native mod manager, save the mod list, then completely restart the game. FreeCombat is optional; enable a supported version only if you want its additional optimizations.
 
 The addon installs its hooks after the complete mod-loading phase. Invalid settings or a legacy standalone patch are reported in the native log/mod error state instead of intentionally stacking patches. A missing/incompatible numeric DLL retains the Ruby path. Source-ownership guards can skip unknown overrides; this is conservative handling, not proof of compatibility with all mods.

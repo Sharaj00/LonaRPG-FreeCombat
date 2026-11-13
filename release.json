@@ -1,5 +1,7 @@
 {
   "tag": "v0.8.11-beta.1",
-  "title": "LonaRPG FreeCombat 0.8.11 — Public Beta 1",
-  "prerelease": true
+  "title": "LonaRPG FreeCombat 0.8.11 вЂ” Public Beta 1",
+  "prerelease": true,
+  "packaging_revision": 2,
+  "replace_assets": true
 }

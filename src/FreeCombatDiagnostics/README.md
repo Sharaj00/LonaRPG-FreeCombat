@@ -2,6 +2,8 @@
 
 For FreeCombatPrototype 0.8.11 on LonaRPG B.0.10.7.5.18 / Windows RGSS301 / Ruby 1.9.2. Optional local diagnostic tools; no network or save-format changes. Extra equipment is issued only in the disposable test. Enable it in the native mod manager and fully restart. Disable it and restart after playtesting.
 
+Extract the archive and manually place its `FreeCombatDiagnostics/` folder in the game copy's `ModScripts/_Mods/` folder. The archive does not contain the parent folders.
+
 ## Optional debug tools
 
 The overlay is hidden on each process start. On a game map, **F9** toggles it. **F6** on the title screen opens the isolated arena; **F7** opens the disposable native-map test; **F8** returns from that test to the title. Movement follows the game bindings; F5 resets the isolated F6 arena (A remains available for WASD). Tab/PgUp/PgDn issue test equipment only in the disposable map test. Save/load/delete paths are blocked in that test. These tools are absent when Diagnostics is disabled. Native F10 remains owned by the game.

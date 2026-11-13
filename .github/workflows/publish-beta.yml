@@ -46,9 +46,16 @@ jobs:
           $folder = Join-Path releases $release.tag
           $files = @(Get-ChildItem -LiteralPath $folder -Filter '*.zip' | ForEach-Object FullName)
           $files += (Join-Path $folder SHA256SUMS.txt)
-          gh release create $release.tag @files --repo $env:GITHUB_REPOSITORY --target $env:GITHUB_SHA --title $release.title --notes-file RELEASE_NOTES.md --prerelease --draft
-          if ($LASTEXITCODE -ne 0) { throw 'Draft release or asset upload failed; nothing was replaced' }
-          gh release edit $release.tag --repo $env:GITHUB_REPOSITORY --draft=false
-          if ($LASTEXITCODE -ne 0) { throw 'Could not publish the completed draft' }
+          if ($release.replace_assets -eq $true) {
+            gh release upload $release.tag @files --repo $env:GITHUB_REPOSITORY --clobber
+            if ($LASTEXITCODE -ne 0) { throw 'Could not replace the explicitly requested release assets' }
+            gh release edit $release.tag --repo $env:GITHUB_REPOSITORY --notes-file RELEASE_NOTES.md
+            if ($LASTEXITCODE -ne 0) { throw 'Could not update installation notes' }
+          } else {
+            gh release create $release.tag @files --repo $env:GITHUB_REPOSITORY --target $env:GITHUB_SHA --title $release.title --notes-file RELEASE_NOTES.md --prerelease --draft
+            if ($LASTEXITCODE -ne 0) { throw 'Draft release or asset upload failed; nothing was replaced' }
+            gh release edit $release.tag --repo $env:GITHUB_REPOSITORY --draft=false
+            if ($LASTEXITCODE -ne 0) { throw 'Could not publish the completed draft' }
+          }
           gh release view $release.tag --repo $env:GITHUB_REPOSITORY --json url,tagName,isDraft,isPrerelease,assets
           if ($LASTEXITCODE -ne 0) { throw 'Published release verification failed' }
