@@ -5,7 +5,7 @@ import json
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-VERSION = '0.8.11-beta.1'
+VERSION = '0.8.12-beta.1'
 
 
 def main():
@@ -13,10 +13,9 @@ def main():
     out.mkdir(parents=True, exist_ok=True)
     addons = {
         'FreeCombatPrototype': ['_ModInfo.json', 'entry.rb', 'core.rb', 'scene.rb',
-            'map_world.rb', 'map_combat.rb', 'map_effects.rb', 'map_mode.rb', 'map_npcs.rb', 'story_mode.rb'],
+            'map_world.rb', 'map_combat.rb', 'map_effects.rb', 'map_mode.rb', 'map_npcs.rb', 'story_mode.rb', 'compatibility.rb', 'load_order.rb'],
         'FreeCombatDiagnostics': ['_ModInfo.json', 'entry.rb', 'README.md', 'test_world.rb',
             'arena.rb', 'test_modes.rb', 'overlay.rb', 'combat_journal.rb'],
-        'FreeCombatCompatibility': ['_ModInfo.json', 'entry.rb', 'README.md'],
         'LonaPerformance': ['_ModInfo.json', 'entry.rb', 'settings.rb', 'README.md', 'CHANGELOG.md', 'MANUAL_TESTS.md'],
     }
     manifest = {}
@@ -25,7 +24,7 @@ def main():
         info = json.loads((base / '_ModInfo.json').read_text(encoding='utf-8'))
         members = {name: (base / name).read_bytes() for name in names}
         if addon == 'FreeCombatPrototype':
-            members['README.md'] = (ROOT / 'docs/releases/0.8.11-beta/README.md').read_bytes()
+            members['README.md'] = (ROOT / 'docs/releases/0.8.12-beta/README.md').read_bytes()
         if addon == 'LonaPerformance':
             for name, source in {
                 'modules/scalar.rb': 'src/RGSSPerformance/60000_RGSSPerformancePatch.rb',

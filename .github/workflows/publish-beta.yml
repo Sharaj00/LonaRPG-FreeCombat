@@ -29,7 +29,7 @@ jobs:
           $release = Get-Content release.json -Raw | ConvertFrom-Json
           $folder = Join-Path releases $release.tag
           $manifest = Get-Content (Join-Path $folder manifest.json) -Raw | ConvertFrom-Json
-          if (@($manifest.PSObject.Properties).Count -ne 4) { throw 'Expected four addon archives' }
+          if (@($manifest.PSObject.Properties).Count -ne 3) { throw 'Expected three addon archives' }
           foreach ($entry in $manifest.PSObject.Properties) {
             $file = Join-Path $folder $entry.Name
             $digest = (Get-FileHash -LiteralPath $file -Algorithm SHA256).Hash.ToLowerInvariant()

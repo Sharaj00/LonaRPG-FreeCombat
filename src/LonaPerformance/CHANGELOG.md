@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.14
+
+- Accept Free Combat 0.8.12 built-in compatibility and automatic load ordering. Numeric implementation, DLL and GC-off defaults are unchanged.
+
 ## 0.1.13
 
 - Accept Free Combat 0.8.11 directional attack/projectile correction with existing capability guards. Numeric modules, DLL and GC-off defaults are unchanged.

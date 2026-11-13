@@ -1,7 +1,7 @@
 # RGSS3 / Ruby 1.9.2. Install once, after the game's entire mod-loading phase.
 unless defined?(LonaPerformance::VERSION)
 module LonaPerformance
-  VERSION='0.1.13'
+  VERSION='0.1.14'
   ROOT=File.dirname(__FILE__)
   LEGACY_FILES=['60000_RGSSPerformancePatch.rb','60010_RGSSCombatPerformance.rb','60020_RGSSCombatGCExperiment.rb']
   class << self
@@ -35,7 +35,7 @@ module LonaPerformance
     info=File.file?(path) ? JSON.decode(File.read(path)) : nil
     version=info.is_a?(Hash) ? info['version'] : nil
     required=['World','MapWorld','MapNPCs','MapMode','NativeEffects']
-    supported=['0.7.1','0.7.2','0.8.0','0.8.1','0.8.2','0.8.3','0.8.4','0.8.5','0.8.6','0.8.7','0.8.8','0.8.9','0.8.10','0.8.11'].include?(version) &&
+    supported=['0.7.1','0.7.2','0.8.0','0.8.1','0.8.2','0.8.3','0.8.4','0.8.5','0.8.6','0.8.7','0.8.8','0.8.9','0.8.10','0.8.11','0.8.12'].include?(version) &&
       required.all? { |name| FreeCombatPrototype.const_defined?(name) } && defined?(Scene_FreeCombatMap)
     if supported
       supported=FreeCombatPrototype::World.method_defined?(:segment_hits_rect?) &&

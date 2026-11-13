@@ -1,10 +1,10 @@
-# Lona Performance 0.1.13 - Early Access
+# Lona Performance 0.1.14 - Early Access
 
 The first Early Access release combines the previously investigated performance approaches into one addon. Actual stability, compatibility and performance gains in normal gameplay still require manual verification. This release is not a stable-60-FPS guarantee.
 
 Target: LonaRPG B.0.10.7.5.18 and original Windows x86 RGSS301. **FreeCombat is optional.** The addon can be enabled and loaded with FreeCombat disabled or completely absent.
 
-The existing geometry and event-dispatch optimizations apply only to compatible FreeCombat interfaces (versions 0.7.1, 0.7.2, and 0.8.0 through 0.8.11). When FreeCombat is absent, those adapters and their numeric DLL are not loaded. The addon does not claim to accelerate the native game's AI with FreeCombat-specific algorithms.
+The existing geometry and event-dispatch optimizations apply only to compatible FreeCombat interfaces (versions 0.7.1, 0.7.2, and 0.8.0 through 0.8.12). When FreeCombat is absent, those adapters and their numeric DLL are not loaded. The addon does not claim to accelerate the native game's AI with FreeCombat-specific algorithms.
 
 Experimental GC batching is an independent component for native Scene_Map gameplay as well as supported FreeCombat scenes. It remains off by default. With unsupported/partial FreeCombat interfaces, adapters and GC batching are skipped conservatively without disabling Lona Performance; compatibility state is reported in LonaPerformance.status.
 

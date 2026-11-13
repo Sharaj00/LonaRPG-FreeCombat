@@ -1,3 +1,7 @@
+# Retired standalone addon
+
+From Free Combat 0.8.12, the adapters are built into FreeCombatPrototype. Do not install this historical standalone addon with the new version. The source below is retained only as a reference for older releases.
+
 # Free Combat Mod Compatibility 0.1.1
 
 Local compatibility bridges for FreeCombatPrototype 0.8.11 and the supplied mod
