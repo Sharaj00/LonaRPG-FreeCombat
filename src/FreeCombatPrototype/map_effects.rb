@@ -1,5 +1,9 @@
 module FreeCombatPrototype
   module SkillGeometry
+    def self.cardinal(dx, dy)
+      dx.abs > dy.abs ? [dx < 0 ? -1.0 : 1.0, 0.0] : [0.0, dy < 0 ? -1.0 : 1.0]
+    end
+
     def self.weight(sensor, sx, sy, fx, fy, tx, ty, radius)
       cells = sensor.instance_variable_get(:@fcp_hit_cells)
       unless cells
@@ -212,7 +216,7 @@ module FreeCombatPrototype
       end
       # Player aim and NPC target tracking share the same four shooting axes.
       # Resolve exact diagonal ties vertically, matching native sprite facing.
-      fx, fy = fx.abs > fy.abs ? [fx < 0 ? -1.0 : 1.0, 0.0] : [0.0, fy < 0 ? -1.0 : 1.0]
+      fx, fy = SkillGeometry.cardinal(fx, fy)
       event.set_direction(fx.abs > fy.abs ? (fx > 0 ? 6 : 4) : (fy > 0 ? 2 : 8))
       speed = 2.0 ** actor.move_speed / 8.0
       range = actor.instance_variable_get(:@range) || (skill && skill.range) || 5
@@ -222,6 +226,19 @@ module FreeCombatPrototype
 
     def projectile?(event)
       @projectiles.has_key?(event.id)
+    end
+
+    def curved_displacement(event, dx, dy)
+      data = event.respond_to?(:summon_data) && event.summon_data
+      skill = data && data[:skill]
+      return nil unless skill && skill.projectile_type == 2 && data[:user] && !event.equal?(data[:user])
+      return nil unless event.actor && event.actor.respond_to?(:user_redirect) && event.actor.user_redirect
+      return nil if npc_body(event) || event.equal?(@player) || (event.actor && event.actor.is_projectile)
+      # Native lobbed arrows are SkillDummy events using jump_to, not registered
+      # projectiles. Preserve the native jump distance/arc, but use one firing axis.
+      distance = Math.sqrt(dx * dx + dy * dy).round
+      fx, fy = SkillGeometry.cardinal(dx, dy)
+      [fx.to_i * distance, fy.to_i * distance]
     end
 
     def projectile_distance(event)
@@ -512,6 +529,9 @@ if defined?(Game_Map) && defined?(Sensors::Basic_Sensor)
     alias_method :fcp_effect_jump, :jump
     alias_method :fcp_effect_jump_low, :jump_low
     def jump(dx, dy, peak = 10)
+      bridge = FreeCombatPrototype::NativeEffects.current
+      curved = bridge && bridge.curved_displacement(self, dx, dy)
+      return fcp_effect_jump(curved[0], curved[1], peak) if curved
       return fcp_effect_jump(dx, dy, peak) unless FreeCombatPrototype::MapMode.controls?(self)
       session = FreeCombatPrototype::MapMode.session
       return fcp_effect_jump(dx, dy, peak) unless FreeCombatPrototype::NativeEffects.source
