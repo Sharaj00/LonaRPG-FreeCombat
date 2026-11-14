@@ -4,9 +4,11 @@ module FreeCombatPrototype
     def initialize(combat, world, opponent)
       @combat, @world = combat, world
       @events, @bodies, @orders, @routes = {}, {}, {}, {}
+      @characters = {}
       @cells = {}
       @world.geometry.cells.each { |cell| @cells[cell] = true }
       @world.npc_bodies = @bodies
+      @world.npc_registry = self
       if opponent
         opponent.actor.no_aggro = false
         register(opponent, world.enemy)
@@ -28,6 +30,8 @@ module FreeCombatPrototype
 
     def register(event, token = nil)
       return if registered?(event)
+      @characters ||= {}
+      @characters.delete(@bodies[event.id].object_id) if @bodies[event.id]
       # A returning native jump still renders at its airborne origin; continuous control cannot interpolate it.
       landing = event.respond_to?(:jumping?) && event.jumping? && event.actor.instance_variable_get(:@fcp_combat).equal?(@combat)
       if landing
@@ -37,6 +41,7 @@ module FreeCombatPrototype
       end
       @events[event.id] = event
       @bodies[event.id] = token || Body.new((event.real_x + 0.5) * 32, (event.real_y + 0.5) * 32, 11, event.actor.health, 0, 1, 0)
+      @characters[@bodies[event.id].object_id] = event
       attach_actor(event)
       @registry_dirty = true
     end
@@ -44,6 +49,11 @@ module FreeCombatPrototype
     def attach_actor(event)
       event.actor.extend(ContinuousSkills)
       event.actor.instance_variable_set(:@fcp_combat, @combat)
+    end
+
+    def character_for(token)
+      event = @characters && @characters[token.object_id]
+      event if registered?(event) && @bodies[event.id].equal?(token)
     end
 
     def spawn(name, x, y)
@@ -66,6 +76,7 @@ module FreeCombatPrototype
         event = @events[id]
         next if map.events[id].equal?(event) && !event.deleted? && !event.erased && event.actor && !event.actor.is_object && !event.actor.is_projectile && @cells.has_key?([event.x,event.y])
         @world.cancel_route(@bodies[id])
+        @characters.delete(@bodies[id].object_id) if @characters
         @events.delete(id); @bodies.delete(id); @orders.delete(id); @routes.delete(id)
       end
       map.events.values.each do |event|

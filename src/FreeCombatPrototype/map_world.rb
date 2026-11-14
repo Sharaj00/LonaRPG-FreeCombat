@@ -61,6 +61,15 @@ module FreeCombatPrototype
   class MapWorld < World
     attr_reader :geometry
     attr_accessor :npc_bodies
+    attr_accessor :npc_registry
+
+    def companion_passage?(left, right)
+      return false unless defined?(Settings) && Settings::COMPANION_COLLISION == false
+      return false unless left.equal?(@player) || right.equal?(@player)
+      token = left.equal?(@player) ? right : left
+      event = @npc_registry && @npc_registry.character_for(token)
+      event && event.is_follower? && event.actor.master.equal?($game_player)
+    end
 
     def initialize(map, player_x, player_y, enemy_x, enemy_y)
       super()
@@ -76,7 +85,7 @@ module FreeCombatPrototype
       return true if blocked?(x, y, body.radius)
       others = [body.equal?(@player) ? @enemy : @player] + (@npc_bodies ? @npc_bodies.values : [])
       others.any? do |other|
-        next false if other.equal?(body) || !alive?(other)
+        next false if other.equal?(body) || !alive?(other) || companion_passage?(body, other)
         limit = (body.radius + other.radius) ** 2
         after = (x-other.x)**2 + (y-other.y)**2
         before = (body.x-other.x)**2 + (body.y-other.y)**2
@@ -87,7 +96,7 @@ module FreeCombatPrototype
 
     def route_clear?(body, x, y, target = nil)
       previous = @routing_bodies
-      @routing_bodies = ((@npc_bodies || {}).values + [@player]).reject { |b| b.equal?(body) || b.equal?(target) || !alive?(b) }
+      @routing_bodies = ((@npc_bodies || {}).values + [@player]).reject { |b| b.equal?(body) || b.equal?(target) || !alive?(b) || companion_passage?(body, b) }
       clear_line?(body.x, body.y, x, y, body.radius)
     ensure
       @routing_bodies = previous
@@ -99,10 +108,11 @@ module FreeCombatPrototype
       @route_queue ||= []
       id = body.object_id
       key = [(x / 16).floor, (y / 16).floor, @walls.object_id,
-             (body.x / 16).floor, (body.y / 16).floor, body.radius]
+             (body.x / 16).floor, (body.y / 16).floor, body.radius,
+             defined?(Settings) ? Settings::COMPANION_COLLISION : true]
       job = @route_jobs[id]
       unless job && job[0] == key
-        blockers = ((@npc_bodies || {}).values + [@player]).reject { |b| b.equal?(body) || b.equal?(target) || !alive?(b) }.map { |b| b.dup }
+        blockers = ((@npc_bodies || {}).values + [@player]).reject { |b| b.equal?(body) || b.equal?(target) || !alive?(b) || companion_passage?(body, b) }.map { |b| b.dup }
         job = [key, Fiber.new { find_enemy_path }, {}, Body.new(x,y,0,1,0,1,0), body.dup, blockers]
         @route_jobs[id] = job
         @route_queue << id unless @route_queue.include?(id)
