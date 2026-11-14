@@ -1,6 +1,6 @@
 # RGSS301 / Ruby 1.9.2. Original third-party scripts remain in their own addons.
 module FreeCombatCompatibility
-  VERSION = '0.8.12'
+  VERSION = '0.8.13'
   BUILT_IN = true
   SUPPORTED = {'RolePlayS'=>'0.7.9.3', 'temper_trine'=>'1.5.2',
     'LonaRPG_FactionClashes'=>'0.3.22', 'LonaRPG_RestJournal'=>'3.5'}

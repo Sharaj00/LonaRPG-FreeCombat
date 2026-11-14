@@ -1,6 +1,6 @@
-# Free Combat Playtest Diagnostics 0.2.3
+# Free Combat Playtest Diagnostics 0.2.4
 
-For FreeCombatPrototype 0.8.12 on LonaRPG B.0.10.7.5.18 / Windows RGSS301 / Ruby 1.9.2. Optional local diagnostic tools; no network or save-format changes. Extra equipment is issued only in the disposable test. Enable it in the native mod manager and fully restart. Disable it and restart after playtesting.
+For FreeCombatPrototype 0.8.13 on LonaRPG B.0.10.7.5.18 / Windows RGSS301 / Ruby 1.9.2. Optional local diagnostic tools; no network or save-format changes. Extra equipment is issued only in the disposable test. Enable it in the native mod manager and fully restart. Disable it and restart after playtesting.
 
 Extract the archive and manually place its `FreeCombatDiagnostics/` folder in the game copy's `ModScripts/_Mods/` folder. The archive does not contain the parent folders.
 
@@ -17,7 +17,7 @@ Reports are in `UserData/FreeCombatDiagnostics/diagnostics.jsonl` inside the gam
 The journal includes:
 
 - Combat action attempts and pause changes share the bounded journal (no separate combat.log).
-- Session start with runtime/combat/optimization versions, the actual enabled addon load order, adaptive compatibility status and enabled hooks/GC settings.
+- Session start with runtime/combat/optimization versions, the actual enabled addon load order, adaptive compatibility status, companion collision setting and enabled hooks/GC settings.
 - Map entry and user markers, including nearby object/projectile/controller membership for trap and fire investigation.
 - Five-second or 600-frame summaries: wall/graphics/start-interval mean, P95, P99, maximum, GC-count delta, map/actor/effect/route counts. Includes combat-overlay and map-sprite timings in 0.2.0. Stage totals/calls/maxima are inclusive; do not add nested stages as independent costs.
 - Every slow frame is counted at a 50 ms threshold; up to 12 samples per window include stage attribution. Up to six fire/trap effect samples per window are retained; the full event count is recorded. No per-target tracing or GC profiler is enabled.

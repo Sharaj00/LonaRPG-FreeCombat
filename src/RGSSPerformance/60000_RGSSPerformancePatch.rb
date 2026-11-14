@@ -13,7 +13,7 @@ if defined?(FreeCombatPrototype::World) && FreeCombatPrototype::World.method_def
   location = original.source_location
   info_path = 'ModScripts/_Mods/FreeCombatPrototype/_ModInfo.json'
   info = File.file?(info_path) ? JSON.decode(File.read(info_path)) : {}
-  if ['0.7.1','0.7.2','0.8.0','0.8.1','0.8.2','0.8.3','0.8.4','0.8.5','0.8.6','0.8.7','0.8.8','0.8.9','0.8.10','0.8.11','0.8.12'].include?(info['version']) && original.arity == -9 && location && location[0].gsub('\\', '/').end_with?('/FreeCombatPrototype/core.rb')
+  if ['0.7.1','0.7.2','0.8.0','0.8.1','0.8.2','0.8.3','0.8.4','0.8.5','0.8.6','0.8.7','0.8.8','0.8.9','0.8.10','0.8.11','0.8.12','0.8.13'].include?(info['version']) && original.arity == -9 && location && location[0].gsub('\\', '/').end_with?('/FreeCombatPrototype/core.rb')
     klass.class_eval do
       unless method_defined?(:rgss_performance_original_segment_hits_rect?)
         alias_method :rgss_performance_original_segment_hits_rect?, :segment_hits_rect?

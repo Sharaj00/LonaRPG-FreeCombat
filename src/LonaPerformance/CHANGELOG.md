@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.15
+
+- Accept Free Combat 0.8.13. Numeric implementation, DLL and GC-off defaults remain unchanged.
+
 ## 0.1.14
 
 - Accept Free Combat 0.8.12 built-in compatibility and automatic load ordering. Numeric implementation, DLL and GC-off defaults are unchanged.

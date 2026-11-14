@@ -1,0 +1,20 @@
+{
+  "FreeCombatPrototype-0.8.13.zip": {
+    "sha256": "40a1b4504c0ef5a7d588783bbc4301553c86120460e9e272a83a9a2299ff68e2",
+    "bytes": 35060,
+    "addon": "FreeCombatPrototype",
+    "version": "0.8.13"
+  },
+  "FreeCombatDiagnostics-0.2.4.zip": {
+    "sha256": "6e5e58ed75fd318066b7087da590beeeda937adb9f02b248a16f8358f52c06c3",
+    "bytes": 13024,
+    "addon": "FreeCombatDiagnostics",
+    "version": "0.2.4"
+  },
+  "LonaPerformance-0.1.15.zip": {
+    "sha256": "3857a82ee68b10fff00531a1a076bfc2ef43ffc21d6644e7139d199736676acd",
+    "bytes": 16478,
+    "addon": "LonaPerformance",
+    "version": "0.1.15"
+  }
+}

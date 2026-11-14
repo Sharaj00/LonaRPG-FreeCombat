@@ -3,7 +3,7 @@ base = File.dirname(__FILE__)
 
 # RGSS301 / Ruby 1.9.2. Instrument only synchronous boundaries, never a yielding Fiber body.
 module FreeCombatDiagnostics
-  VERSION = '0.2.3'
+  VERSION = '0.2.4'
   LIMIT = 4 * 1024 * 1024
   class << self
     attr_reader :error, :path

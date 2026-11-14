@@ -1,13 +1,13 @@
 {
   "id": "FreeCombatDiagnostics",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "name": "Free Combat - Playtest Diagnostics",
   "description": "Local rolling journal, F11 issue markers, F9 optional overlay and disposable F6/F7 tests (F8 exit). Overlay starts hidden. Restart after enabling or disabling.",
   "entry": "entry.rb",
   "requires": {
     "FreeCombatPrototype": [
       "==",
-      "0.8.12"
+      "0.8.13"
     ]
   }
 }
